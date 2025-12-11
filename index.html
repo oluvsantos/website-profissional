@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luan - Consultoria de Automação Estratégica. Escale sua operação sem aumentar a equipe.">
+    <title>Luan | Automação Estratégica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIAVEIS --- */
+        :root {
+            --bg-body: #050505; /* Preto quase absoluto */
+            --bg-surface: #0f0f0f;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent: #ffffff; /* Destaque em branco puro */
+            --line-color: #222222;
+            --whatsapp-green: #25D366;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        
+        /* --- UTILS --- */
+        .container {
+            max-width: 1000px; /* Mais estreito para leitura focada */
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section { padding: 120px 0; border-bottom: 1px solid var(--line-color); }
+        .last-section { border-bottom: none; }
+
+        h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; line-height: 1.1; }
+        
+        .highlight { border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+        /* --- BOTÕES --- */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 32px;
+            background: var(--text-main);
+            color: var(--bg-body);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 4px; /* Borda levemente quadrada */
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--line-color);
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover { border-color: var(--text-main); }
+
+        /* --- HEADER --- */
+        header {
+            padding: 30px 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { 
+            font-family: var(--font-display); 
+            font-weight: 700; 
+            font-size: 1.5rem; 
+            letter-spacing: -0.05em;
+        }
+
+        .nav-cta {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 1px solid transparent;
+        }
+        .nav-cta:hover { color: var(--text-main); border-bottom-color: var(--text-main); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem); /* Fonte gigante e responsiva */
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* --- MANIFESTO (QUEM SOU) --- */
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .manifesto-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+        }
+
+        .manifesto-content p {
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        .manifesto-content strong { color: var(--text-main); font-weight: 500; }
+
+        /* --- EXPERTISE (LISTA LIMPA) --- */
+        .expertise-header { margin-bottom: 60px; }
+        .expertise-header h2 { font-size: 3rem; }
+
+        .expertise-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expertise-item {
+            border-top: 1px solid var(--line-color);
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 0.5fr 1.5fr 2fr; /* Numero - Titulo - Descrição */
+            align-items: baseline;
+            transition: 0.3s;
+        }
+
+        .expertise-item:hover {
+            border-top-color: var(--text-main);
+        }
+        
+        .expertise-item:hover .exp-number, 
+        .expertise-item:hover .exp-title {
+            color: var(--text-main);
+        }
+
+        .exp-number {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .exp-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .exp-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* --- FOOTER CTA --- */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .footer-cta h2 { font-size: 3rem; margin-bottom: 20px; }
+        .footer-cta p { color: var(--text-muted); margin-bottom: 40px; }
+
+        /* --- WHATSAPP FLOATING --- */
+        .wpp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #fff; /* Fundo branco para contraste máximo no tema dark */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .wpp-float svg { width: 30px; height: 30px; fill: #000; }
+        .wpp-float:hover { transform: scale(1.1); }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .manifesto-grid { grid-template-columns: 1fr; gap: 30px; }
+            
+            .expertise-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .exp-number { margin-bottom: -10px; }
+            .btn-secondary { margin-left: 0; margin-top: 15px; display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Luan.</div>
+                <a href="#" onclick="openWhatsapp()" class="nav-cta">Entrar em contato ↗</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section last-section hero">
+        <div class="container">
+            <h1>Estratégia,<br>não apenas código.</h1>
+            <p>
+                Sou Luan, Gestor de Automação. Desenho ecossistemas digitais que eliminam o caos operacional e devolvem tempo para você escalar seu negócio.
+            </p>
+            <div class="hero-btns">
+                <a href="#" onclick="openWhatsapp()" class="btn-primary">
+                    Iniciar Conversa
+                </a>
+                <a href="#metodo" class="btn-secondary">
+                    Minha Abordagem
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <section id="metodo" class="section">
+        <div class="container">
+            <div class="manifesto-grid">
+                <h2 class="manifesto-title">O fim das tarefas manuais repetitivas.</h2>
+                <div class="manifesto-content">
+                    <p>
+                        A tecnologia deve servir ao negócio, não complicá-lo. Meu trabalho não é apenas conectar ferramentas, mas entender a fundo o fluxo do seu dinheiro e da sua operação.
+                    </p>
+                    <p>
+                        Utilizo <strong>Inteligência Artificial</strong> e lógicas avançadas (Python/n8n) para criar sistemas invisíveis que trabalham 24/7 pela sua empresa.
+                    </p>
+                    <p style="color: var(--text-main); border-left: 2px solid var(--text-main); padding-left: 20px; margin-top: 30px;">
+                        "Eu não vendo automação. Eu vendo a certeza de que o processo será seguido à risca, sem erro humano."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="expertise-header">
+                <h2>Onde eu atuo</h2>
+            </div>
+            
+            <div class="expertise-list">
+                <div class="expertise-item">
+                    <span class="exp-number">01</span>
+                    <h3 class="exp-title">Resgate de Vendas</h3>
+                    <p class="exp-desc">
+                        Leads frios ou esquecidos são dinheiro na mesa. Crio esteiras de reaquecimento automático no WhatsApp que conversam com o cliente como se fosse você, recuperando oportunidades perdidas.
+                    </p>
+                </div>
+
+                <div class="expertise-item">
+                    <span class="exp-number">02</span>
+                    <h3 class="exp-title">Inteligência de Atendimento</h3>
+                    <p class="exp-desc">
+                        Agentes de IA treinados na sua base de conhecimento para triar clientes, tirar dúvidas complexas e agendar reuniões apenas com leads qualificados.
+                    </p>
+                </div>
+
+                <div class="expertise-item">
+                    <span class="exp-number">03</span>
+                    <h3 class="exp-title">Visibilidade de Dados</h3>
+                    <p class="exp-desc">
+                        Unificação de dados espalhados. Transformo o caos de múltiplas planilhas em dashboards claros e acionáveis para tomada de decisão em tempo real.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-cta">
+        <div class="container">
+            <h2>Sua operação,<br>rodando no automático.</h2>
+            <p>Vamos discutir seu cenário atual?</p>
+            <a href="#" onclick="openWhatsapp()" class="btn-primary">
+                Agendar Consultoria
+            </a>
+            
+            <div style="margin-top: 80px; font-size: 0.8rem; color: #333;">
+                &copy; 2026 Luan. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" onclick="openWhatsapp()" class="wpp-float" title="Conversar no WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382C17.119 14.382 16.368 14.017 16.035 13.856C15.702 13.679 15.424 13.626 15.188 13.987C14.952 14.347 14.28 15.143 14.072 15.378C13.864 15.614 13.641 15.657 13.308 15.479C11.516 14.593 10.158 13.784 8.783 11.396C8.616 11.107 8.963 11.119 9.352 10.332C9.421 10.197 9.394 10.076 9.338 9.97C9.282 9.863 8.838 8.777 8.643 8.337C8.455 7.915 8.267 7.971 8.087 7.971C7.92 7.971 7.726 7.971 7.531 7.971C7.337 7.971 7.017 8.046 6.753 8.337C6.489 8.629 5.739 9.337 5.739 10.781C5.739 12.225 6.781 13.621 6.934 13.826C7.087 14.032 9.004 17.11 11.991 18.291C14.978 19.472 14.978 19.065 15.506 19.022C16.034 18.979 17.208 18.335 17.472 17.585C17.736 16.834 17.736 16.191 17.653 16.062C17.569 15.934 17.347 15.869 16.986 15.697" />
+        </svg>
+    </a>
+
+    <script>
+        function openWhatsapp() {
+            const phone = "5511919801800"; 
+            const text = encodeURIComponent("Olá Luan. Vi seu site e quero entender como suas automações podem ajudar meu negócio.");
+            const url = `https://wa.me/${phone}?text=${text}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
